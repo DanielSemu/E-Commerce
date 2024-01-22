@@ -5,8 +5,11 @@ import SignIn from '../../components/sign-in/SignIn'
 const SignInPage = () => {
   return (
     <div className='sign-in-sign-out'>
+
       <SignIn/>
       {/* <SignUp/> */}
+      
+      
     </div>
   )
 }
