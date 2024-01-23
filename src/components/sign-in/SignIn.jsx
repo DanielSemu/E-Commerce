@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import FormInput from "../form-input/FormInput";
 import "./SignIn.scss";
 import CustomButton from "../custom-button/CustomButton";
+import { signInWithGoogle } from "../../firebase/firebase";
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +22,13 @@ class SignIn extends Component {
     // Your form submission logic here
   };
   render() {
+    const handleSignInWithGoogle = async () => {
+      try {
+        await signInWithGoogle();
+      } catch (error) {
+        console.error('Google sign-in error:', error.message);
+      }
+    };
     return (
       <div className="sign-in">
         <h2>I already have an account</h2>
@@ -43,10 +51,10 @@ class SignIn extends Component {
             label="password"
             required
           />
-
-          <CustomButton type="submit">Sign in</CustomButton>
-          
-          <CustomButton type="submit">Sign in With Google</CustomButton>
+            <div className="buttons">
+              <CustomButton  type="submit">Sign in</CustomButton>
+              <CustomButton onClick={handleSignInWithGoogle} isGoogleSignIn >Sign in with Google</CustomButton>
+            </div>
         </form>
       </div>
     );
